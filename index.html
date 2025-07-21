@@ -28,29 +28,35 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(10px, 10px); }
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            text-align: left;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-diagram {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
@@ -83,12 +89,12 @@
             font-weight: 600;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 235, 0, 0.3);
         }
 
         .hero-cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(255, 235, 0, 0.4);
         }
 
         @keyframes fadeInUp {
@@ -461,6 +467,15 @@
                 display: none;
             }
 
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
             .problem-grid {
                 grid-template-columns: 1fr;
             }
@@ -503,15 +518,221 @@
     </nav>
 
     <section class="hero">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        
-        <div class="hero-content">
-            <h1>Ihr Solarstrom. Ihr Unternehmen.<br>Energie-Transfer Schweizweit</h1>
-            <p class="hero-subtitle">Ihr PV Solarstrom kann mehr - bis zu 100% vollautomatisch und intelligent zwischen ihren schweizweiten Standorten verteilen</p>
-            <div class="hero-cta">
-                <a href="#cta" class="hero-cta-button">Potenzial berechnen</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ihr Solarstrom. Ihr Unternehmen.<br>Energie-Transfer Schweizweit</h1>
+                <p class="hero-subtitle">Ihr PV Solarstrom kann mehr - bis zu 100% vollautomatisch und intelligent zwischen ihren schweizweiten Standorten verteilen</p>
+                <div class="hero-cta">
+                    <a href="#cta" class="hero-cta-button">Potenzial berechnen</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <svg class="hero-diagram" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Background with subtle gradient -->
+                  <defs>
+                    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1"/>
+                      <stop offset="100%" style="stop-color:#FFFF00;stop-opacity:0.05"/>
+                    </linearGradient>
+                    
+                    <!-- Energy flow gradient -->
+                    <linearGradient id="energyFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#4A1A5C;stop-opacity:0.9"/>
+                      <stop offset="30%" style="stop-color:#FFFF00;stop-opacity:1"/>
+                      <stop offset="70%" style="stop-color:#FFFF00;stop-opacity:1"/>
+                      <stop offset="100%" style="stop-color:#4A1A5C;stop-opacity:0.9"/>
+                    </linearGradient>
+                    
+                    <!-- Solar panel gradient -->
+                    <linearGradient id="solarGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.9"/>
+                      <stop offset="100%" style="stop-color:#4A1A5C;stop-opacity:0.8"/>
+                    </linearGradient>
+                    
+                    <!-- Glow effect -->
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge> 
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    
+                    <!-- Window pattern for reuse -->
+                    <g id="windowPattern">
+                      <rect width="20" height="20" fill="#000000" stroke="#000000" stroke-width="1"/>
+                      <rect x="2" y="2" width="16" height="16" fill="#FFFF00" opacity="0.8"/>
+                    </g>
+                    
+                    <!-- Grid pattern overlay -->
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#7F7F7F" stroke-width="0.5" opacity="0.1"/>
+                    </pattern>
+                  </defs>
+                  
+                  <rect width="1200" height="600" fill="url(#bgGradient)"/>
+                  
+                  <!-- Stylized Swiss Alps -->
+                  <path d="M0 100 L100 70 L150 90 L220 120 L280 90 L350 130 L420 110 L500 150 L580 130 L650 170 L720 150 L800 190 L880 170 L950 210 L1000 190 L1100 230 L1200 250 L1200 600 L0 600 Z" fill="#7F7F7F" opacity="0.3"/>
+                  
+                  <!-- Sun with enhanced glow -->
+                  <g filter="url(#glow)" transform="translate(80,0)">
+                    <circle cx="950" cy="110" r="25" fill="#FFFF00" opacity="0.9"/>
+                    <g stroke="#FFFF00" stroke-width="2" opacity="0.7">
+                      <line x1="920" y1="80" x2="927" y2="87"/>
+                      <line x1="973" y1="87" x2="980" y2="80"/>
+                      <line x1="980" y1="133" x2="973" y2="140"/>
+                      <line x1="927" y1="140" x2="920" y2="133"/>
+                      <line x1="905" y1="110" x2="920" y2="110"/>
+                      <line x1="980" y1="110" x2="995" y2="110"/>
+                      <line x1="950" y1="65" x2="950" y2="80"/>
+                      <line x1="950" y1="140" x2="950" y2="155"/>
+                    </g>
+                  </g>
+                  
+                  <!-- St. Gallen - PV Building (Right) -->
+                  <g id="stgallen" transform="translate(80,100)">
+                    <!-- Main building -->
+                    <rect x="900" y="230" width="140" height="80" fill="#7F7F7F" stroke="#000000" stroke-width="1.5" rx="2"/>
+                    
+                    <!-- Modern solar panels -->
+                    <g>
+                      <!-- Panel array -->
+                      <rect x="905" y="220" width="30" height="16" fill="#000000" rx="1"/>
+                      <rect x="906" y="221" width="28" height="14" fill="#4A1A5C" opacity="0.9" rx="0.5"/>
+                      
+                      <rect x="940" y="220" width="30" height="16" fill="#000000" rx="1"/>
+                      <rect x="941" y="221" width="28" height="14" fill="#4A1A5C" opacity="0.9" rx="0.5"/>
+                      
+                      <rect x="975" y="220" width="30" height="16" fill="#000000" rx="1"/>
+                      <rect x="976" y="221" width="28" height="14" fill="#4A1A5C" opacity="0.9" rx="0.5"/>
+                      
+                      <rect x="1010" y="220" width="25" height="16" fill="#000000" rx="1"/>
+                      <rect x="1011" y="221" width="23" height="14" fill="#4A1A5C" opacity="0.9" rx="0.5"/>
+                      
+                      <!-- Cell grid pattern -->
+                      <g stroke="#7F7F7F" stroke-width="0.3" opacity="0.5">
+                        <line x1="907" y1="223" x2="933" y2="223"/>
+                        <line x1="907" y1="225" x2="933" y2="225"/>
+                        <line x1="907" y1="227" x2="933" y2="227"/>
+                        <line x1="907" y1="229" x2="933" y2="229"/>
+                        <line x1="907" y1="231" x2="933" y2="231"/>
+                        <line x1="907" y1="233" x2="933" y2="233"/>
+                        
+                        <line x1="942" y1="223" x2="968" y2="223"/>
+                        <line x1="942" y1="225" x2="968" y2="225"/>
+                        <line x1="942" y1="227" x2="968" y2="227"/>
+                        <line x1="942" y1="229" x2="968" y2="229"/>
+                        <line x1="942" y1="231" x2="968" y2="231"/>
+                        <line x1="942" y1="233" x2="968" y2="233"/>
+                      </g>
+                      
+                      <!-- Reflective highlights -->
+                      <rect x="908" y="222" width="24" height="2" fill="#FFFF00" opacity="0.4"/>
+                      <rect x="943" y="222" width="24" height="2" fill="#FFFF00" opacity="0.4"/>
+                      <rect x="977" y="222" width="24" height="2" fill="#FFFF00" opacity="0.4"/>
+                      <rect x="1012" y="222" width="20" height="2" fill="#FFFF00" opacity="0.4"/>
+                    </g>
+                    
+                    <!-- Modern windows using pattern -->
+                    <use href="#windowPattern" x="915" y="245"/>
+                    <use href="#windowPattern" x="945" y="245"/>
+                    <use href="#windowPattern" x="975" y="245"/>
+                    <use href="#windowPattern" x="1005" y="245"/>
+                    <use href="#windowPattern" x="915" y="275"/>
+                    <use href="#windowPattern" x="975" y="275"/>
+                    <use href="#windowPattern" x="1005" y="275"/>
+                    
+                    <!-- Labels -->
+                    <text x="970" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000">PV Überschuss</text>
+                    <text x="970" y="348" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#4A1A5C">St. Gallen</text>
+                  </g>
+                  
+                  <!-- Aargau - Consumer Building (Left) -->
+                  <g id="aargau" transform="translate(80,100)">
+                    <!-- Main building -->
+                    <rect x="400" y="200" width="140" height="60" fill="#7F7F7F" stroke="#000000" stroke-width="1.5" rx="2"/>
+                    
+                    <!-- Modern windows using pattern -->
+                    <use href="#windowPattern" x="415" y="215"/>
+                    <use href="#windowPattern" x="445" y="215"/>
+                    <use href="#windowPattern" x="475" y="215"/>
+                    <use href="#windowPattern" x="505" y="215"/>
+                    <use href="#windowPattern" x="415" y="235"/>
+                    <use href="#windowPattern" x="445" y="235"/>
+                    <use href="#windowPattern" x="475" y="235"/>
+                    <use href="#windowPattern" x="505" y="235"/>
+                    
+                    <!-- Labels -->
+                    <text x="470" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000">Strombezug</text>
+                    <text x="470" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#4A1A5C">Aargau</text>
+                  </g>
+                  
+                  <!-- Energy Transfer Path (hidden for animation) -->
+                  <path id="energyPath" d="M980 350 Q780 260 620 330" opacity="0"/>
+                  
+                  <!-- Enhanced Energy Transfer -->
+                  <g>
+                    <!-- Main energy flow line -->
+                    <path d="M980 350 Q780 260 620 330" stroke="url(#energyFlow)" stroke-width="8" fill="none" opacity="0.9" filter="url(#glow)"/>
+                    
+                    <!-- Animated energy particles -->
+                    <circle r="4" fill="#FFFF00" opacity="0.9">
+                      <animateMotion dur="3s" repeatCount="indefinite">
+                        <mpath href="#energyPath"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="3" fill="#4A1A5C" opacity="0.8">
+                      <animateMotion dur="3s" begin="0.5s" repeatCount="indefinite">
+                        <mpath href="#energyPath"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="4" fill="#FFFF00" opacity="0.9">
+                      <animateMotion dur="3s" begin="1s" repeatCount="indefinite">
+                        <mpath href="#energyPath"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="3" fill="#4A1A5C" opacity="0.8">
+                      <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite">
+                        <mpath href="#energyPath"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="4" fill="#FFFF00" opacity="0.9">
+                      <animateMotion dur="3s" begin="2s" repeatCount="indefinite">
+                        <mpath href="#energyPath"/>
+                      </animateMotion>
+                    </circle>
+                    
+                    <!-- Modern arrow -->
+                    <polygon points="630,315 600,330 630,345 622,330" fill="#4A1A5C" transform="rotate(-15 615 330)"/>
+                  </g>
+                  
+                  <!-- Modern transmission infrastructure -->
+                  <g stroke="#000000" stroke-width="2.5" fill="none" opacity="0.7" transform="translate(80,100)">
+                    <!-- Simplified tower 1 -->
+                    <line x1="780" y1="300" x2="780" y2="230"/>
+                    <line x1="765" y1="270" x2="795" y2="270"/>
+                    <line x1="768" y1="250" x2="792" y2="250"/>
+                    <line x1="770" y1="240" x2="790" y2="240"/>
+                    <line x1="772" y1="235" x2="788" y2="235"/>
+                    
+                    <!-- Simplified tower 2 -->
+                    <line x1="620" y1="285" x2="620" y2="215"/>
+                    <line x1="605" y1="255" x2="635" y2="255"/>
+                    <line x1="608" y1="235" x2="632" y2="235"/>
+                    <line x1="610" y1="225" x2="630" y2="225"/>
+                    <line x1="612" y1="220" x2="628" y2="220"/>
+                  </g>
+                  
+                  <!-- Power lines -->
+                  <g stroke="#000000" stroke-width="1.5" fill="none" opacity="0.6" transform="translate(80,100)">
+                    <path d="M765 270 Q705 275 635 255"/>
+                    <path d="M765 250 Q705 255 635 235"/>
+                  </g>
+                  
+                  <!-- Grid pattern overlay -->
+                  <rect width="1200" height="600" fill="url(#grid)"/>
+                </svg>
             </div>
         </div>
     </section>
