@@ -310,23 +310,56 @@
         .process-grid {
             max-width: 1200px;
             margin: 3rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
 
         .process-step {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            text-align: left;
+            box-shadow: none;
+            transition: none;
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
         }
 
         .process-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .process-step:nth-child(odd) .process-content-left {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .process-step:nth-child(odd) .process-icon {
+            grid-column: 2;
+        }
+
+        .process-step:nth-child(odd) .process-content-right {
+            grid-column: 3;
+            text-align: left;
+        }
+
+        .process-step:nth-child(even) .process-content-left {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .process-step:nth-child(even) .process-icon {
+            grid-column: 2;
+        }
+
+        .process-step:nth-child(even) .process-content-right {
+            grid-column: 3;
+            text-align: left;
         }
 
         .process-icon {
@@ -340,15 +373,53 @@
             justify-content: center;
             font-size: 2rem;
             font-weight: 700;
-            margin: 0 auto 2rem;
+            margin: 0 auto;
             box-shadow: 0 8px 20px rgba(102, 0, 102, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-content-left, .process-content-right {
+            padding: 1rem;
+        }
+
+        .process-content-left h3, .process-content-right h3 {
+            color: #660066;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .process-content-left p, .process-content-right p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Timeline line */
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            bottom: 80px;
+            width: 3px;
+            background: #660066;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process {
+            position: relative;
         }
 
         .process-step h3 {
             color: #660066;
             font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.3;
         }
 
@@ -486,6 +557,49 @@
 
             .hero-image {
                 order: 2;
+            }
+
+            .process-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .process-grid::before {
+                display: none;
+            }
+
+            .process-step {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 1rem;
+                grid-template-columns: none;
+                background: white;
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .process-content-left, .process-content-right {
+                text-align: center !important;
+                padding: 0;
+                width: 100%;
+            }
+
+            .process-content-left h3, .process-content-right h3 {
+                text-transform: none;
+                margin-bottom: 1rem;
+            }
+
+            .process-content-left p, .process-content-right p {
+                margin-bottom: 0;
+            }
+
+            .process-icon {
+                margin-bottom: 1rem;
+                order: -1;
             }
 
             .problem-grid {
@@ -794,24 +908,40 @@
         <h2 class="section-title">Der Ablauf mit SAK Energie-Transfer</h2>
         <div class="process-grid">
             <div class="process-step">
+                <div class="process-content-left">
+                    <p>In wenigen Minuten klicken Sie sich durch unsere digitale Ersteinschätzung.</p>
+                </div>
                 <div class="process-icon">1</div>
-                <h3>Standorte prüfen</h3>
-                <p>In wenigen Minuten klicken Sie sich durch unsere digitale Ersteinschätzung.</p>
+                <div class="process-content-right">
+                    <h3>Überprüfen Sie die Standorte</h3>
+                </div>
             </div>
             <div class="process-step">
+                <div class="process-content-left">
+                    <h3>Erfahren Sie mehr in der Beratung</h3>
+                </div>
                 <div class="process-icon">2</div>
-                <h3>Im persönlichen Gespräch die Details finalisieren</h3>
-                <p>Ein Mitarbeiter aus unserer Energiewirtschaft bespricht telefonisch, ausführlich (mind. 30 Minuten) Ihr Potenzial und die nächsten Schritte.</p>
+                <div class="process-content-right">
+                    <p>Ein Mitarbeiter aus unserer Energiewirtschaft bespricht telefonisch, ausführlich (mind. 30 Minuten) Ihr Potenzial und die nächsten Schritte.</p>
+                </div>
             </div>
             <div class="process-step">
+                <div class="process-content-left">
+                    <p>Im Anschluss bekommen Sie eine Offerte der unternehmensweiten Stromkosten mit Energie-Transfer. Klar übersichtlich und transparent.</p>
+                </div>
                 <div class="process-icon">3</div>
-                <h3>Offerte</h3>
-                <p>Im Anschluss bekommen Sie eine Offerte der unternehmensweiten Stromkosten mit Energie-Transfer. Klar übersichtlich und transparent.</p>
+                <div class="process-content-right">
+                    <h3>Wir schicken Ihnen eine Offerte</h3>
+                </div>
             </div>
             <div class="process-step">
+                <div class="process-content-left">
+                    <h3>Energie-Transfer starten</h3>
+                </div>
                 <div class="process-icon">4</div>
-                <h3>Start Energy Transfer</h3>
-                <p>Sind sie zufrieden mit der Offerte übernehmen wir ab Vertragsstart die komplette Energiebewirtschaftung inkl. intelligentem Energie-Transfer für Ihre Standorte.</p>
+                <div class="process-content-right">
+                    <p>Sind sie zufrieden mit der Offerte übernehmen wir ab Vertragsstart die komplette Energiebewirtschaftung inkl. intelligentem Energie-Transfer für Ihre Standorte.</p>
+                </div>
             </div>
         </div>
     </section>
