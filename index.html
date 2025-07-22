@@ -466,6 +466,107 @@
             background: #f8fafc;
         }
 
+        /* FAQ Section */
+        .faq {
+            background: #ffffff;
+            margin: 0 -2rem;
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-question.active {
+            background: #660066;
+            color: white;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: inherit;
+            margin: 0;
+            line-height: 1.4;
+            flex: 1;
+            padding-right: 1rem;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: inherit;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-question.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 1.5rem 2rem;
+        }
+
+        .faq-answer p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .faq-answer a {
+            color: #660066;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-answer a:hover {
+            border-bottom-color: #660066;
+        }
+
         /* CTA Section */
         .cta {
             background: #000000;
@@ -616,6 +717,18 @@
 
             .comparison-table {
                 font-size: 0.9rem;
+            }
+
+            .faq-question {
+                padding: 1rem 1.5rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+
+            .faq-answer.active {
+                padding: 1rem 1.5rem;
             }
         }
 
@@ -982,6 +1095,71 @@
         </div>
     </section>
 
+    <section class="faq animate-on-scroll" id="faq">
+        <h2 class="section-title">Häufig gestellte Fragen</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Wie funktioniert der Energie-Transfer? / Welche technischen Mindestanforderungen gibt es?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Strom wird über das öffentliche Netz bilanziell übertragen, basierend auf Smart-Meter-Daten. Erforderlich sind Smart Meter, Fernzugriff und ggf. Lastgangmessung bei Anlagen über 30 kVA.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Brauche ich spezielle Bewilligungen oder Anmeldungen?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Der energieaufnehmende Standort muss Strom am freien Markt beschaffen oder dorthin wechseln (<a href="https://www.sak.ch/unternehmen/strom_unternehmen/strom_unternehmen_markt" target="_blank" rel="noopener">mehr Infos hier</a>). Der abgebende Standort kann in der Grundversorgung bleiben oder ebenfalls wechseln (ab 100.000 kWh/Jahr). Die Einspeisung der PV-Anlage wird vollständig von der SAK übernommen und erfolgt nicht mehr über den lokalen Energieversorger.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Was passiert mit meinen bestehenden Stromverträgen?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Diese werden von der SAK übernommen. Ein Wechsel ist abhängig von den bestehenden Beschaffungsverträgen auch erst später möglich.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Was kostet mich der Service von SAK?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Es fällt eine monatliche Servicegebühr an, abhängig vom Modell und Umfang.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Was passiert bei Preisänderungen der Stromtarife?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Einspeisevergütung und Bezugskosten passen sich den aktuellen Tarifen und Verträgen an.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Was ist der Unterschied zu einem LEG oder vZEV?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>LEGs sind lokal gebunden; Energie-Transfer ist flexibel und schweizweit möglich. Innerhalb Gemeinden bieten auch LEG/vZEV-Betrieb an. Mehr Infos unter: <a href="https://sak-eg.ch" target="_blank" rel="noopener">https://sak-eg.ch</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1024,6 +1202,25 @@
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
         });
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = element.classList.contains('active');
+
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.parentElement.querySelector('.faq-answer').classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
 
         // Add loading animation
         window.addEventListener('load', function() {
